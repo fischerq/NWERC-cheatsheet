@@ -1,0 +1,29 @@
+\subsection{Binary Indexed Tree}
+\begin{lstlisting}
+  
+//binary indexed tree
+//verwaltet kumultative Summen in log(n)
+
+int tree[1<<N];
+int MaxVal = (1<<N)-1;
+
+int readsum(int idx){//sum_{i in [1;idx]} f[i]
+	int sum = 0;
+	while (idx > 0){
+		sum += tree[idx];
+		idx -= (idx & -idx);
+	}
+	return sum;
+}
+
+int suminrange(int a, int b) { //sum_{i in [a;b[} f[i]
+	return readsum(b-1)-readsum(a-1);
+}
+
+void update(int idx ,int val){ //updates f[idx]->val
+	while (idx <= MaxVal){
+		tree[idx] += val;
+		idx += (idx & -idx);
+	}
+}
+\end{lstlisting}
