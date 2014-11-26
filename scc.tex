@@ -1,0 +1,56 @@
+\subsection{Strongly Connected Components}
+\begin{lstlisting}
+#include<vector>
+ 
+using namespace std;
+ 
+// Der Graph.
+vector<int> g[20000];
+// Anzahl der Knoten im Graphen.
+int V;
+ 
+// Interne Variablen fuer den Algorithmus
+int d[20000], low[20000];
+int t;
+vector<int> stack;
+bool instack[20000];
+ 
+// Ergebnis-Struktur: enthaelt am Ende die starken 
+//Zusammenhangskomponenten (als Listen von Knotenindizes)
+vector<vector<int> > sccs;
+ 
+void VISIT(int v) {
+  d[v] = low[v] = ++t;
+  stack.push_back(v);
+  instack[v] = true;
+  for (vector<int>::iterator w = g[v].begin(); w != g[v].end(); ++w) {
+    if (! d[*w]) {
+      VISIT(*w);
+      low[v] = min(low[v], low[*w]);
+    } else if (instack[*w]) {
+      low[v] = min(low[v], low[*w]);
+    }
+  }
+ 
+  if (d[v] == low[v]) {
+    vector<int> scc;
+    while(1) {
+      int w = stack.back();
+      stack.pop_back();
+      instack[w] = false;
+      scc.push_back(w);
+      if (v == w)
+        break;
+    }
+    sccs.push_back(scc);
+  }
+}
+ 
+// Aufruf der VISIT Funktion:
+memset(d, 0, sizeof(d));
+memset(instack, 0, sizeof(instack));
+t = 0;
+for (int v = 0; v < V; v++)
+  if (! d[v])
+    VISIT(v);
+\end{lstlisting}

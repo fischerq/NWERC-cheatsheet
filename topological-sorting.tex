@@ -1,0 +1,25 @@
+\subsection{Topological Sort}
+\begin{lstlisting}
+static void dsf(int x)
+{
+if(visited[x] && !f[x])
+{
+circle = true;
+return;
+}
+if(visited[x])
+{
+return;
+}
+visited[x] = true;
+
+for(Integer curr : list.get(x))
+{
+dsf(curr);
+}
+
+out[tt] = x;
+tt++;
+f[x] = true;
+}
+\end{lstlisting}
