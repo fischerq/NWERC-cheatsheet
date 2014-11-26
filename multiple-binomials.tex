@@ -1,0 +1,26 @@
+\subsection{Collected Binomials}
+
+\begin{lstlisting}
+  //Berechnet alle Binomialkoeffizienten (n ueber k) mod m mit n<N
+int binom[N][N];
+void calcbinomials(int m) {
+	for(int n=0; n<N; n++) {
+		binom[n][0] = binom[n][n] = 1;
+		for(int k=1; k<n; k++)
+			binom[n][k] = (binom[n-1][k]+binom[n-1][k-1])%m;
+	}
+}
+//Berechnet einzelnen Binomialkoeffizienten in Restklasse O(log n)
+void calcbinom(int n, int k, int m) {
+	return (fak[n] * inverse(fak[k], m) * inverse(fak[n-k], m))%m;
+} //fak[n] = (n!)%m
+
+
+//Berechnet fuer fixes n fuer alle k (n ueber k)  O(n)
+void calcbinomrow(int n) {
+	binom[n][0] = 1;
+	for(int k=1; k<=n; k++) {
+		binom[n][k] = binom[n][k-1]*(n-k+1)/k; //*inv(k) % MOD
+	}
+}
+\end{lstlisting}
