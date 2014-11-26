@@ -1,0 +1,16 @@
+\subsection{Union Find}
+\begin{lstlisting}
+initialize(): for all x, boss[x] = x, rank[x] = 0. 
+
+union(x, y)
+	a = find(x); b = find(y);
+	if (rank(a) < rank(b)) boss[a] = b;
+	if (rank(a) > rank(b)) boss[b] = a;
+	if (rank(a) == rank(b)) {boss[b] = a; rank[a] += 1;}
+
+find(x)
+	if (boss[x] == x] return x;
+	boss[x] = find(boss[x]); // path compression
+	return boss[x];
+
+\end{lstlisting}

@@ -1,0 +1,23 @@
+\subsection{Floyd-Warshall}
+Floyd-Warshall kommt mit negativen Gewichten zurecht. All sources, all targets.
+\begin{lstlisting}
+procedure FloydWarshallWithPathReconstruction ()
+    for k := 1 to n
+       for i := 1 to n
+          for j := 1 to n
+              if (path[i][k] + path[k][j] < path[i][j]) {
+                path[i][j] := path[i][k]+path[k][j];
+                next[i][j] := next[i][k]; 
+              }
+
+ function Path (i,j)
+    if path[i][j] equals infinity then
+        return "no path";
+    int intermediate := next[i][j];
+    if intermediate equals 'null' then
+        return " ";
+    else
+        return Path(i,intermediate) 
+          + intermediate 
+          + Path(intermediate,j);
+\end{lstlisting}

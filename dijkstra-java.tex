@@ -1,0 +1,41 @@
+\subsection{Dijkstra/Java}
+\begin{lstlisting}
+PriorityQueue<Item> q = new PriorityQueue<Item>();
+
+Item[] index = new Item[n];
+for(int i = 0; i < n; ++i)
+{
+index[i] = new Item(-1, oo);
+}
+
+index[start] = new Item(-1, 0);
+q.add(new Item(start, 0));
+
+while(!q.isEmpty())
+{
+Item curr = q.poll();
+if(curr.value > index[curr.node].value)
+{
+continue;
+}
+/*if(curr.node == end)
+{
+// Ende
+break;
+}*/
+ArrayList<Item> edges = v.get(curr.node);
+for(int i = 0; i < edges.size(); ++i)
+{
+int nv = edges.get(i).value + curr.value;
+int otherNode = edges.get(i).node;
+Item oi = index[otherNode];
+if(nv < oi.value)
+{
+oi.value = nv;
+oi.node = curr.node;
+q.add(new Item(otherNode, nv));
+}
+}
+}
+return index;
+\end{lstlisting}

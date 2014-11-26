@@ -1,0 +1,64 @@
+\subsection{Bellman-Ford/Java}
+\begin{lstlisting}
+static class Item
+{public int node;public double value;}
+
+ArrayList<ArrayList<Item>> v = new ArrayList<ArrayList<Item>>(n);
+for(int i = 0; i < n; ++i)
+{
+v.add(new ArrayList<Item>());
+}
+// Kanten einfuegen:
+// v.get(a).add(new Item(b, c));
+ArrayDeque<Integer> q = new ArrayDeque<Integer>();
+Item[] index = new Item[n];
+index[0] = new Item(-1, 0);
+for(int i = 1; i < n; ++i)
+{
+index[i] = new Item(-1, oo);
+}
+
+boolean[] inQueue = new boolean[n];
+inQueue[0] = true;
+int phase = 0;
+int nextPhaseStart = -1;
+q.add(0);
+boolean jackpot = false; // neg cycle
+while(!q.isEmpty())
+{
+int i = q.poll();
+inQueue[i] = false;
+if(i == nextPhaseStart)
+{
+phase++;
+nextPhaseStart = -1;
+}
+if(phase == n-1)
+{
+System.out.format("Case \#%d: Jackpot\n", numCase+1);
+jackpot = true;
+break;
+}
+Item it = index[i];
+ArrayList<Item> e = v.get(i);
+for(int x = 0; x < e.size(); ++x)
+{
+Item edge = e.get(x);
+double nv = edge.value + it.value;
+Item other = index[edge.node];
+if(nv < other.value)
+{
+other.value = nv;
+if(!inQueue[edge.node])
+{
+q.add(edge.node);
+if(nextPhaseStart == -1)
+{
+nextPhaseStart = edge.node;
+}
+inQueue[edge.node] = true;
+}
+}
+}
+}
+\end{lstlisting}
