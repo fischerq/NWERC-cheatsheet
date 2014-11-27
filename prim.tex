@@ -1,0 +1,40 @@
+\subsection{Minimal Spanning Tree (Prim)}
+\begin{lstlisting}[language=C++]
+vector<int> prim(vector<vector<int>>& AM) {
+	// returns the parents vector
+	vector<bool> in_mst(AM.size());
+	vector<int> parents(AM.size());
+
+	struct Edge	{
+		int source, target, cost;
+		Edge(int source, int target, int cost) :
+			source(source), target(target), cost(cost)  {};
+
+		bool operator< (const Edge& v2) const {
+			return cost > v2.cost;
+		}
+	};
+	priority_queue<Edge> Q;
+
+	int s = 0;
+	Edge s_e(s, s, 0);
+	Q.push(s_e);
+
+	for (int v = 0; v < AM.size(); v++) parents[v] = -1;
+
+	while (Q.size() > 0) {
+		Edge w = Q.top(); Q.pop();
+		if (in_mst[w.target]) continue; // might already have been added
+		if (w.target <0 || w.target >= AM.size()) cout << w.target << endl;
+		parents[w.target] = w.source;
+		in_mst[w.target] = true;
+		for (int n : get_neighbours(AM, w.target)) {
+			if (!in_mst[n]) {
+				Edge n_e(w.target, n, AM[w.target][n]);
+				Q.push(n_e);
+			}
+		}
+	}
+	return parents;
+}
+\end{lstlisting}

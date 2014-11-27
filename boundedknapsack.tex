@@ -1,0 +1,40 @@
+\subsection{Bounded Knapsack}
+\begin{lstlisting}[language=C++]
+struct Bounded_Knapsack{
+	struct Solution {
+		vector<unsigned> counts;
+		unsigned overall_value;
+		Solution(vector<unsigned> counts, unsigned overall_value) :
+			counts(counts), overall_value(overall_value) {}
+	};
+
+	Bounded_Knapsack(unsigned item_count, unsigned max_weight) :
+	 item_count(item_count), max_weight(max_weight),
+	 subs(vector<Solution>(max_weight + 1,
+	 Solution(vector<unsigned>(item_count), 0))), 
+	 w(vector<unsigned>(item_count)),
+	 v(vector<unsigned>(item_count)), n(vector<unsigned>(item_count)) 	{}
+
+	unsigned item_count, max_weight;
+	vector<Solution> subs;
+	vector<unsigned> w, v, n;
+
+	Solution bounded_knapsack() {
+		for (unsigned i = 0; i < item_count; i++) {
+			for (unsigned k = 0; k < n[i]; k++) {
+				for (int j = max_weight; j >= 0; j--) {
+					if (w[i] <= j && subs[j - w[i]].overall_value + v[i] > subs[j].overall_value) {
+						subs[j].counts = subs[j - w[i]].counts;
+						subs[j].counts[i]++;
+						subs[j].overall_value = subs[j - w[i]].overall_value + v[i];
+					}
+				}
+			}
+		}
+
+		Solution s = subs[max_weight];
+		for (Solution ss : subs) if (ss.overall_value > s.overall_value) s = ss;
+		return s;
+	}
+};
+\end{lstlisting}

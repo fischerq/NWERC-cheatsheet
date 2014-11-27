@@ -1,0 +1,18 @@
+\subsection{Binary Search}
+\begin{lstlisting}[language=C++]
+struct Binary_Search {
+	template <class T>
+	int binary_search_l(T e, vector<T> v, int start, int end) {
+		// Returns the first element <= searched element e
+		if (start >= end) return start;
+		int mid = (end + start) / 2;c
+		if (v[mid] > e) {
+			return binary_search_l(e, v, start, l - 1);
+		} else if (v[mid] == e > 0) {
+			return l;
+		} else {
+			return binary_search_l(r, p, y, l + 1, end);
+		}
+	}
+};
+\end{lstlisting}

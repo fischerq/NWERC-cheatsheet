@@ -1,29 +1,39 @@
 \subsection{Binary Indexed Tree}
 \begin{lstlisting}[language=C++]
-  
-//binary indexed tree
-//verwaltet kumultative Summen in log(n)
+struct BIT {
+	vector<unsigned> tree;
+	BIT(unsigned MaxVal) : tree(vector<unsigned>(MaxVal + 1)) {}
 
-int tree[1<<N];
-int MaxVal = (1<<N)-1;
-
-int readsum(int idx){//sum_{i in [1;idx]} f[i]
-	int sum = 0;
-	while (idx > 0){
-		sum += tree[idx];
-		idx -= (idx & -idx);
+	int read(int i) {
+		// read frequency of i and everything before
+		int sum = 0;
+		while (i > 0) {
+			sum += tree[i];
+			i -= (i & -i);
+		}
+		return sum;
 	}
-	return sum;
-}
 
-int suminrange(int a, int b) { //sum_{i in [a;b[} f[i]
-	return readsum(b-1)-readsum(a-1);
-}
-
-void update(int idx ,int val){ //updates f[idx]->val
-	while (idx <= MaxVal){
-		tree[idx] += val;
-		idx += (idx & -idx);
+	void update(int i, int v) {
+		// update frequency of i and everything behind
+		while (i < tree.size()) {
+			tree[i] += v;
+			i += (i & -i);
+		}
 	}
-}
+
+	void update_range(int a, int b, int v) {
+		// only update frequency in [a,b]
+		while (a <= b) {
+			tree[a] += v;
+			a += (a & -a);
+		}
+		if (a == b) a += (a & -a);
+		b = b + 1;
+		while (b < a && b < tree.size()) {
+			tree[b] -= v;
+			b += (b & -b);
+		}
+	}
+};
 \end{lstlisting}
