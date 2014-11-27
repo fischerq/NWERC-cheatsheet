@@ -1,6 +1,5 @@
 \subsection{Simplex Algorithm}
-\begin{lstlisting}
-
+\begin{lstlisting}[language=C++]
 // Two-phase simplex algorithm for solving linear programs of the form
 //
 //     maximize     c^T x
@@ -17,15 +16,6 @@
 //
 // To use this code, create an LPSolver object with A, b, and c as
 // arguments.  Then, call Solve(x).
-
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
-#include <limits>
-
-using namespace std;
-
 typedef long double DOUBLE;
 typedef vector<DOUBLE> VD;
 typedef vector<VD> VVD;
@@ -97,7 +87,6 @@ struct LPSolver {
 };
 
 int main() {
-
   const int m = 4;
   const int n = 3;  
   DOUBLE _A[m][n] = {
@@ -124,6 +113,4 @@ int main() {
   cerr << endl;
   return 0;
 }
-
-
 \end{lstlisting}

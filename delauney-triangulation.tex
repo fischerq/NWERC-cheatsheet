@@ -1,6 +1,5 @@
 \subsection{Delaunay Triangulation}
-\begin{lstlisting}
-
+\begin{lstlisting}[language=C++]
 // Slow but simple Delaunay triangulation. Does not handle
 // degenerate cases (from O'Rourke, Computational Geometry in C)
 //
@@ -11,9 +10,6 @@
 //
 // OUTPUT:   triples = a vector containing m triples of indices
 //                     corresponding to triangle vertices
-
-#include<vector>
-using namespace std;
 
 typedef double T;
 
@@ -65,5 +61,4 @@ int main()
         printf("%d %d %d\n", tri[i].i, tri[i].j, tri[i].k);
     return 0;
 }
-
 \end{lstlisting}

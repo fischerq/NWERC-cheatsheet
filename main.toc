@@ -1,0 +1,44 @@
+\select@language {ngerman}
+\contentsline {section}{IO}{1}{section*.2}
+\contentsline {subsection}{C++ Input/Output/Limits}{1}{section*.3}
+\contentsline {section}{Computations}{2}{section*.4}
+\contentsline {subsection}{Greatest Common Divisor}{2}{section*.5}
+\contentsline {subsection}{Binomial Coefficients}{2}{section*.6}
+\contentsline {section}{Data Structures}{2}{section*.7}
+\contentsline {subsection}{Union Find}{2}{section*.8}
+\contentsline {section}{Math-Stuff}{2}{section*.9}
+\contentsline {subsection}{Euclid-Stuff}{2}{section*.10}
+\contentsline {subsection}{Gauss-Jordan}{3}{section*.11}
+\contentsline {subsection}{Collected Binomials}{4}{section*.12}
+\contentsline {section}{Shortest Paths}{4}{section*.13}
+\contentsline {subsection}{Floyd-Warshall}{4}{section*.14}
+\contentsline {subsection}{Dijkstra/Java}{4}{section*.15}
+\contentsline {subsection}{Bellman-Ford/Java}{5}{section*.16}
+\contentsline {section}{Flow}{6}{section*.17}
+\contentsline {subsection}{MaxFlow Push-Relabel}{6}{section*.18}
+\contentsline {section}{Matching}{6}{section*.19}
+\contentsline {subsection}{Max Bipartite Matching}{6}{section*.20}
+\contentsline {section}{Graph Stuff}{7}{section*.21}
+\contentsline {subsection}{Strongly Connected Components}{7}{section*.22}
+\contentsline {subsection}{Topological Sort}{7}{section*.23}
+\contentsline {subsection}{Br\~A\IeC {\textonequarter }cken - Artikulationspunkte}{7}{section*.24}
+\contentsline {section}{Strings}{8}{section*.25}
+\contentsline {subsection}{Suffix Array}{8}{section*.26}
+\contentsline {subsection}{Knuth-Morris-Pratt Algorithm}{8}{section*.27}
+\contentsline {section}{Geometry}{9}{section*.28}
+\contentsline {subsection}{Geometry/C++}{9}{section*.29}
+\contentsline {subsection}{Geometry/Java}{12}{section*.30}
+\contentsline {subsection}{Graham Scan -- Konvexe Huelle}{12}{section*.31}
+\contentsline {subsection}{Delaunay Triangulation}{13}{section*.32}
+\contentsline {section}{Trees}{13}{section*.33}
+\contentsline {subsection}{Binary Indexed Tree}{13}{section*.34}
+\contentsline {subsection}{Segment Tree}{13}{section*.35}
+\contentsline {subsection}{KD-tree}{14}{section*.36}
+\contentsline {section}{Misc}{16}{section*.37}
+\contentsline {subsection}{Longest Increasing Subsequence}{16}{section*.38}
+\contentsline {subsection}{Simulated Annealing}{16}{section*.39}
+\contentsline {subsection}{Simplex Algorithm}{16}{section*.40}
+\contentsline {subsection}{Dates}{17}{section*.41}
+\contentsline {subsection}{Primes}{18}{section*.42}
+\contentsline {subsection}{LatLon}{18}{section*.43}
+\contentsline {section}{Theoretical CS Cheat Sheet}{19}{lstnumber.-30.39}

@@ -1,28 +1,16 @@
-\subsection{Primes}
-\begin{lstlisting}
-
-/*
-Converts from rectangular coordinates to latitude/longitude and vice
-versa. Uses degrees (not radians).
-*/
-
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
-struct ll
-{
+\subsection{LatLon}
+\begin{lstlisting}[language=C++]
+/* Converts from rectangular coordinates to latitude/longitude and vice
+versa. Uses degrees (not radians). */
+struct ll {
   double r, lat, lon;
 };
 
-struct rect
-{
+struct rect {
   double x, y, z;
 };
 
-ll convert(rect& P)
-{
+ll convert(rect& P) {
   ll Q;
   Q.r = sqrt(P.x*P.x+P.y*P.y+P.z*P.z);
   Q.lat = 180/M_PI*asin(P.z/Q.r);
@@ -31,18 +19,15 @@ ll convert(rect& P)
   return Q;
 }
 
-rect convert(ll& Q)
-{
+rect convert(ll& Q) {
   rect P;
   P.x = Q.r*cos(Q.lon*M_PI/180)*cos(Q.lat*M_PI/180);
   P.y = Q.r*sin(Q.lon*M_PI/180)*cos(Q.lat*M_PI/180);
   P.z = Q.r*sin(Q.lat*M_PI/180);
-  
   return P;
 }
 
-int main()
-{
+int main() {
   rect A;
   ll B;
   
@@ -54,5 +39,4 @@ int main()
   A = convert(B);
   cout << A.x << " " << A.y << " " << A.z << endl;
 }
-\\
 \end{lstlisting}

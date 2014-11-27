@@ -1,33 +1,24 @@
-\subsection{Greates Common Divisor}
+\subsection{Greatest Common Divisor}
 
-\begin{lstlisting}
-long gcd(long a, long b)
-{
-if (b == 0)
-return a;
-else return gcd(b, a % b);
+\begin{lstlisting}[language=C++]
+long gcd(long a, long b) {
+	if (b == 0) return a;
+	else return gcd(b, a % b);
 }
 \end{lstlisting}
 
 \subsection{Binomial Coefficients}
 
-\begin{lstlisting}
-long binomial(long n, long k)
-{
-if (k > n - k)
-return binomial(n, n - k);
-
-long result = 1;
-if (k > n)
-return 0;
-
-for (long next = 1; next <= k; ++next)
-{
-long cancelled = gcd(result, next);
-result = (result / cancelled)*(n - next + 1);
-result = result/(next/cancelled);
-}
-
-return result;
+\begin{lstlisting}[language=C++]
+long binomial(long n, long k) {
+	if (k > n - k) return binomial(n, n - k);
+	long result = 1;
+	if (k > n) return 0;
+	for (long next = 1; next <= k; ++next) {
+		long cancelled = gcd(result, next);
+		result = (result / cancelled) * (n - next + 1);
+		result /= next / cancelled;
+	}
+	return result;
 }
 \end{lstlisting}
