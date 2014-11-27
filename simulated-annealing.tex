@@ -1,50 +1,42 @@
 \subsection{Simulated Annealing}
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 Random r = new Random();
 int numChanges = 0;
 double T = 10000;
 double alpha = 0.99;
 int decreaseAfter = 20;
 int nChanges = 0;
-for(int i = 0; i < 1000000; ++i)
-{
-// calculate newCost (apply 2-opt-step) (swap two things)
-double delta = newCost - cost;
-boolean accept = newCost <= cost;
-if(!accept)
-{
-double R = r.nextDouble();
-double calc = Math.exp(-delta / T);
-double maxDiff = Math.exp(-10000/T);
-if(calc < maxDiff && i < 1000000/2)
-{
-calc = maxDiff;
-}
-//System.out.println(calc);
-if(calc > R)
-{
-accept = true;
-}
-}
-if(i % 10000 == 0)
-{
-// System.out.println("after " + i + ": " + T);
-}
+for(int i = 0; i < 1000000; ++i) {
+	// calculate newCost (apply 2-opt-step) (swap two things)
+	double delta = newCost - cost;
+	boolean accept = newCost <= cost;
+	if(!accept) {
+		double R = r.nextDouble();
+		double calc = Math.exp(-delta / T);
+		double maxDiff = Math.exp(-10000/T);
+		if(calc < maxDiff && i < 1000000/2) {
+			calc = maxDiff;
+		}
+		//System.out.println(calc);
+		if(calc > R) {
+			accept = true;
+		}
+	}
+	//if(i % 10000 == 0) {
+		// System.out.println("after " + i + ": " + T);
+	//}
 
-if(nChanges >= decreaseAfter)
-{
-nChanges = 0;
-T = alpha * T;
-}
-if(accept)
-{
-cost = newCost;
-numChanges++;
-nChanges++;
-}else
-{
-// swap back
-swap(trip, a, b);
-}
+	if(nChanges >= decreaseAfter) {
+		nChanges = 0;
+		T = alpha * T;
+	}
+	if(accept) {
+		cost = newCost;
+		numChanges++;
+		nChanges++;
+	} else {
+		// swap back
+		swap(trip, a, b);
+	}
 }
 \end{lstlisting}

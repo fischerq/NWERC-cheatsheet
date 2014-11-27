@@ -1,16 +1,7 @@
-\subsection{Primes}
+\subsection{LatLon}
 \begin{lstlisting}
-
-/*
-Converts from rectangular coordinates to latitude/longitude and vice
-versa. Uses degrees (not radians).
-*/
-
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
+/* Converts from rectangular coordinates to latitude/longitude and vice
+versa. Uses degrees (not radians). */
 struct ll
 {
   double r, lat, lon;
@@ -54,5 +45,4 @@ int main()
   A = convert(B);
   cout << A.x << " " << A.y << " " << A.z << endl;
 }
-\\
 \end{lstlisting}

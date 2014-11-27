@@ -1,39 +1,32 @@
 \subsection{Geometry/Java}
-
-\begin{lstlisting}
-
-P cross(P o)
-{
-return new P(y*o.z-z*o.y, z*o.x-x*o.z, x*o.y-y*o.x);
+\begin{lstlisting}[language=Java]
+P cross(P o) {
+	return new P(y*o.z-z*o.y, z*o.x-x*o.z, x*o.y-y*o.x);
 }
 
-P scalar(P o)
-{
-return new P(x*o.x, y * o.y, z * o.z);
+P scalar(P o) {
+	return new P(x*o.x, y * o.y, z * o.z);
 }
 
-P r90()
-{
-return new P(-y, x, z);
+P r90() {
+	return new P(-y, x, z);
 }
 
-P parallel(P p)
-{
-return cross(zeroOne).cross(p);
+P parallel(P p) {
+	return cross(zeroOne).cross(p);
 }
 
-Point2D getPoint()
-{
-return new Point2D.Double(x / z, y / z);
+Point2D getPoint() {
+	return new Point2D.Double(x / z, y / z);
 }
 
 static double computePolygonArea(ArrayList<Point2D.Double> points) {
-Point2D.Double[] pts = points.toArray(new Point2D.Double[points.size()]);
-double area = 0;
-for (int i = 0; i < pts.length; i++){
-int j = (i+1) % pts.length;
-area += pts[i].x * pts[j].y - pts[j].x * pts[i].y;
-}
-return Math.abs(area)/2;
+	Point2D.Double[] pts = points.toArray(new Point2D.Double[points.size()]);
+	double area = 0;
+	for (int i = 0; i < pts.length; i++) {
+		int j = (i+1) % pts.length;
+		area += pts[i].x * pts[j].y - pts[j].x * pts[i].y;
+	}
+	return Math.abs(area)/2;
 }
 \end{lstlisting}
