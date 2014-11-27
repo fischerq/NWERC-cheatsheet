@@ -1,0 +1,55 @@
+\subsection{Brücken - Artikulationspunkte}
+\begin{lstlisting}
+#include <vector>
+#include <stack>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+vector<bool> visited;
+int counter = 0;
+vector<int> id;
+vector<int> back;
+vector<vector<int> > g;
+int n,m;
+
+void dfs(int v, int parent) {
+    visited[v] = true;
+    id[v] = counter++;
+    back[v] = id[v];
+
+    for(int i = 0; i < g[v].size(); ++i) {
+        int w = g[v][i];
+        if(w == parent) continue;
+
+        if(!visited[w]) {    // Vorwaerts-Kante
+            dfs(w, v);
+            if(back[w] >= id[v]) cout << "Artikulationspunkt: " << v << endl;
+            if(back[w] >  id[v]) cout << "Bruecke: " << v << "-" << w << endl;
+            back[v] = min(back[v], back[w]);
+        }
+        else                // Rueckwaerts-Kante
+            back[v] = min(back[v], id[w]);
+    }
+}
+
+int main()
+{
+	cin >> n >> m;
+	g.resize(n);
+	visited.resize(n, false);
+	back.resize(n);
+	id.resize(n);
+	
+	for(int i = 0; i < m; ++i)
+	{
+		int a,b;
+		cin >> a >> b;
+		g[a].push_back(b);
+	}
+	
+	for(int i = 0; i < n; ++i)
+		if(!visited[i])
+			dfs(i, -1);
+}  
+\end{lstlisting}
